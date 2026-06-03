@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, Suspense } from "react"
 
 /* Declaracao do custom element do ConverteAI para o TypeScript */
 declare global {
@@ -263,7 +263,7 @@ function VturbBubble({ time }: { time: string }) {
 }
 
 /* ─── Componente principal ─── */
-export default function ChatPage() {
+function ChatPageInner() {
   const searchParams = useSearchParams()
   const nome = searchParams.get("nome") || "você"
 
@@ -830,5 +830,13 @@ export default function ChatPage() {
         )}
       </div>
     </>
+  )
+}
+
+export default function ChatPage() {
+  return (
+    <Suspense fallback={null}>
+      <ChatPageInner />
+    </Suspense>
   )
 }
