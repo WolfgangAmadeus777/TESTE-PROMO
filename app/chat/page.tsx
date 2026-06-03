@@ -810,7 +810,11 @@ function ChatPageInner() {
         {/* ── Barra inferior ── */}
         {showCta ? (
           <div className="wa-cta-bar">
-            <button>QUERO PAGAR A TAXA</button>
+            <button
+              onClick={() => window.open("https://go.perfectpay.com.br/PPU38CQCOL6", "_blank", "noopener,noreferrer")}
+            >
+              QUERO PAGAR A TAXA
+            </button>
           </div>
         ) : (
           <div className="wa-input-bar">
