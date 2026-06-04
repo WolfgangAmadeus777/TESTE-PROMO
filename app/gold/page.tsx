@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
-import { Plus_Jakarta_Sans } from "next/font/google"
+import { Roboto } from "next/font/google"
 
-const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] })
+const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500", "700", "900"] })
 
 export const metadata: Metadata = {
   title: "Plano Gold — Multiplique seus ganhos",
@@ -11,27 +11,44 @@ export const metadata: Metadata = {
 const CHECKOUT_URL = "https://go.perfectpay.com.br/PPU38CQCOOH"
 
 const WHITE = "#FFFFFF"
-const INK = "#111111"
-const GOLD = "#D4A017"
-const GOLD_TINT = "#FBF6E9"
-const GRAY = "#8A8A8A"
-const BORDER = "#ECECEC"
+const SURFACE = "#F2F2F2"
+const RED = "#FF0000"
+const INK = "#0F0F0F"
+const GRAY = "#606060"
+const BORDER = "#E5E5E5"
+
+function CoinIcon() {
+  return (
+    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <ellipse cx="24" cy="34" rx="14" ry="5" fill={RED} opacity="0.25" />
+      <ellipse cx="24" cy="28" rx="14" ry="5" fill={RED} opacity="0.45" />
+      <ellipse cx="24" cy="22" rx="14" ry="5" fill={RED} opacity="0.7" />
+      <ellipse cx="24" cy="16" rx="14" ry="5" fill={RED} />
+      <text x="24" y="19" textAnchor="middle" fontSize="7" fontWeight="900" fill={WHITE}>
+        R$
+      </text>
+    </svg>
+  )
+}
 
 function CtaButton() {
   return (
     <a
       href={CHECKOUT_URL}
       style={{
-        display: "block",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
         width: "100%",
-        backgroundColor: GOLD,
-        color: INK,
+        height: 56,
+        backgroundColor: RED,
+        color: WHITE,
         textAlign: "center",
-        fontWeight: 700,
-        fontSize: 17,
-        lineHeight: 1.3,
-        padding: "18px 24px",
-        borderRadius: 12,
+        fontWeight: 500,
+        fontSize: 16,
+        lineHeight: 1.2,
+        padding: "0 20px",
+        borderRadius: 2,
         textDecoration: "none",
       }}
     >
@@ -46,7 +63,7 @@ function DeclineLink() {
       href="/custo-servidor"
       style={{
         display: "inline-block",
-        marginTop: 12,
+        marginTop: 14,
         fontSize: 13,
         color: GRAY,
         textDecoration: "underline",
@@ -60,7 +77,7 @@ function DeclineLink() {
 export default function GoldUpsellPage() {
   return (
     <main
-      className={jakarta.className}
+      className={roboto.className}
       style={{ backgroundColor: WHITE, color: INK, minHeight: "100vh", width: "100%" }}
     >
       {/* 1. TOP BAR */}
@@ -68,48 +85,49 @@ export default function GoldUpsellPage() {
         style={{
           textAlign: "center",
           fontSize: 13,
-          color: GRAY,
-          padding: "12px 16px",
-          borderBottom: `1px solid ${BORDER}`,
+          fontWeight: 500,
+          color: WHITE,
+          backgroundColor: RED,
+          padding: "10px 16px",
         }}
       >
-        ⚡ Oferta exclusiva — disponível apenas agora
+        Oferta exclusiva — disponível apenas agora
       </div>
 
       <div style={{ maxWidth: 640, margin: "0 auto", padding: "0 24px" }}>
         {/* 2. HERO */}
-        <section style={{ paddingTop: 56, paddingBottom: 48, textAlign: "center" }}>
-          <span
-            style={{
-              display: "inline-block",
-              fontSize: 12,
-              fontWeight: 700,
-              letterSpacing: "0.12em",
-              color: GOLD,
-              backgroundColor: GOLD_TINT,
-              padding: "6px 14px",
-              borderRadius: 999,
-            }}
-          >
-            UPGRADE ESPECIAL
-          </span>
+        <section style={{ paddingTop: 48, paddingBottom: 44, textAlign: "center" }}>
+          <div style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}>
+            <CoinIcon />
+          </div>
 
           <h1
             style={{
-              fontSize: 40,
+              fontSize: 38,
               lineHeight: 1.1,
-              fontWeight: 800,
-              marginTop: 24,
-              marginBottom: 16,
+              fontWeight: 700,
+              marginBottom: 24,
               textWrap: "balance",
             }}
           >
-            Multiplique seus ganhos por avaliação com o Plano Gold
+            Multiplique seus ganhos <span style={{ color: RED }}>com o Plano Gold</span>
           </h1>
 
-          <p style={{ fontSize: 18, lineHeight: 1.5, color: "#444444", marginBottom: 36 }}>
-            Usuários Gold ganham até 3x mais em cada avaliação enviada.
-          </p>
+          {/* STAT ROW */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 16,
+              marginBottom: 8,
+            }}
+          >
+            <span style={{ fontSize: 24, color: GRAY, textDecoration: "line-through" }}>R$ 0,50</span>
+            <span style={{ fontSize: 24, color: GRAY }}>→</span>
+            <span style={{ fontSize: 32, fontWeight: 700, color: RED }}>R$ 1,50</span>
+          </div>
+          <p style={{ fontSize: 14, color: GRAY, marginBottom: 36 }}>ganho por avaliação</p>
 
           <CtaButton />
 
@@ -127,23 +145,37 @@ export default function GoldUpsellPage() {
           <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 15 }}>
             <thead>
               <tr>
-                <th style={{ textAlign: "left", padding: "14px 12px", fontWeight: 600 }} />
-                <th style={{ textAlign: "center", padding: "14px 12px", fontWeight: 600, color: GRAY }}>
+                <th
+                  style={{
+                    textAlign: "left",
+                    padding: "14px 12px",
+                    fontWeight: 500,
+                    color: GRAY,
+                    backgroundColor: SURFACE,
+                  }}
+                />
+                <th
+                  style={{
+                    textAlign: "center",
+                    padding: "14px 12px",
+                    fontWeight: 500,
+                    color: GRAY,
+                    backgroundColor: SURFACE,
+                  }}
+                >
                   Gratuito
                 </th>
                 <th
                   style={{
                     textAlign: "center",
                     padding: "14px 12px",
-                    fontWeight: 800,
-                    color: GOLD,
-                    backgroundColor: GOLD_TINT,
-                    borderLeft: `3px solid ${GOLD}`,
-                    borderTopLeftRadius: 10,
-                    borderTopRightRadius: 10,
+                    fontWeight: 700,
+                    color: RED,
+                    backgroundColor: WHITE,
+                    borderTop: `3px solid ${RED}`,
                   }}
                 >
-                  ⭐ Gold
+                  Gold
                 </th>
               </tr>
             </thead>
@@ -153,52 +185,55 @@ export default function GoldUpsellPage() {
                 { label: "Bônus mensal", free: "—", gold: "R$ 20,00" },
                 { label: "Avaliações prioritárias", free: "✗", gold: "✓" },
                 { label: "Suporte VIP", free: "✗", gold: "✓" },
-              ].map((row, i, arr) => {
-                const isLast = i === arr.length - 1
-                return (
-                  <tr key={row.label}>
-                    <td style={{ padding: "16px 12px", borderTop: `1px solid ${BORDER}`, fontWeight: 500 }}>
-                      {row.label}
-                    </td>
-                    <td
-                      style={{
-                        padding: "16px 12px",
-                        borderTop: `1px solid ${BORDER}`,
-                        textAlign: "center",
-                        color: GRAY,
-                      }}
-                    >
-                      {row.free}
-                    </td>
-                    <td
-                      style={{
-                        padding: "16px 12px",
-                        textAlign: "center",
-                        fontWeight: 700,
-                        backgroundColor: GOLD_TINT,
-                        borderLeft: `3px solid ${GOLD}`,
-                        borderTop: `1px solid ${BORDER}`,
-                        ...(isLast
-                          ? { borderBottomLeftRadius: 10, borderBottomRightRadius: 10 }
-                          : {}),
-                      }}
-                    >
-                      {row.gold}
-                    </td>
-                  </tr>
-                )
-              })}
+              ].map((row) => (
+                <tr key={row.label}>
+                  <td style={{ padding: "16px 12px", borderTop: `1px solid ${BORDER}`, fontWeight: 500 }}>
+                    {row.label}
+                  </td>
+                  <td
+                    style={{
+                      padding: "16px 12px",
+                      borderTop: `1px solid ${BORDER}`,
+                      textAlign: "center",
+                      color: row.free === "✗" ? GRAY : GRAY,
+                    }}
+                  >
+                    {row.free}
+                  </td>
+                  <td
+                    style={{
+                      padding: "16px 12px",
+                      textAlign: "center",
+                      fontWeight: 700,
+                      color: RED,
+                      borderTop: `1px solid ${BORDER}`,
+                    }}
+                  >
+                    {row.gold}
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </section>
 
-        {/* 4. ONE BIG NUMBER */}
-        <section style={{ textAlign: "center", paddingBottom: 56 }}>
-          <p style={{ fontSize: 28, fontWeight: 800, lineHeight: 1.25, textWrap: "balance" }}>
-            Usuários Gold ganham em média{" "}
-            <span style={{ color: GOLD }}>R$ 127/mês a mais</span>
+        {/* 4. STAT BLOCK */}
+        <section
+          style={{
+            backgroundColor: INK,
+            borderRadius: 12,
+            padding: "48px 24px",
+            textAlign: "center",
+            marginBottom: 56,
+          }}
+        >
+          <p style={{ lineHeight: 1.1, textWrap: "balance" }}>
+            <span style={{ fontSize: 72, fontWeight: 900, color: RED }}>R$ 127</span>
+            <span style={{ fontSize: 24, fontWeight: 700, color: WHITE, marginLeft: 8 }}>/mês a mais</span>
           </p>
-          <p style={{ fontSize: 14, color: GRAY, marginTop: 10 }}>Com apenas 85 avaliações por mês</p>
+          <p style={{ fontSize: 14, color: "#AAAAAA", marginTop: 16 }}>
+            Com apenas 85 avaliações por mês
+          </p>
         </section>
 
         {/* 5. TESTIMONIALS */}
@@ -228,8 +263,9 @@ export default function GoldUpsellPage() {
             <div
               key={t.initials}
               style={{
-                border: `1px solid ${BORDER}`,
-                borderRadius: 14,
+                backgroundColor: SURFACE,
+                borderRadius: 12,
+                borderLeft: `3px solid ${RED}`,
                 padding: 24,
               }}
             >
@@ -239,8 +275,8 @@ export default function GoldUpsellPage() {
                     width: 40,
                     height: 40,
                     borderRadius: 999,
-                    backgroundColor: GOLD_TINT,
-                    color: GOLD,
+                    backgroundColor: RED,
+                    color: WHITE,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -250,11 +286,11 @@ export default function GoldUpsellPage() {
                 >
                   {t.initials}
                 </div>
-                <div style={{ fontSize: 14, fontWeight: 600 }}>
+                <div style={{ fontSize: 14, fontWeight: 500, color: INK }}>
                   {t.name} <span style={{ color: GRAY, fontWeight: 400 }}>— {t.city}</span>
                 </div>
               </div>
-              <p style={{ fontSize: 15, lineHeight: 1.5, color: "#333333" }}>{`"${t.quote}"`}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.5, color: GRAY, fontStyle: "italic" }}>{`"${t.quote}"`}</p>
             </div>
           ))}
         </section>
