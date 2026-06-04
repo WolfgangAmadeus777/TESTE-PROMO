@@ -219,16 +219,16 @@ export default function AppRapidoUpsellPage() {
           </p>
           <CtaButton label="ATIVAR APP RÁPIDO AGORA →" />
           <a
-            href={CHECKOUT_URL}
+            href="/gold"
             style={{
               display: "inline-block",
-              marginTop: 18,
+              marginTop: 12,
               fontSize: 13,
               color: GRAY,
               textDecoration: "underline",
             }}
           >
-            Não, prefiro ficar na fila comum.
+            Não obrigado, prefiro ficar na fila comum.
           </a>
         </section>
       </div>

@@ -242,16 +242,16 @@ export default function GoldUpsellPage() {
         <section style={{ paddingBottom: 64, textAlign: "center" }}>
           <CtaButton />
           <a
-            href={CHECKOUT_URL}
+            href="/custo-servidor"
             style={{
               display: "inline-block",
-              marginTop: 18,
+              marginTop: 12,
               fontSize: 13,
               color: GRAY,
               textDecoration: "underline",
             }}
           >
-            Não, prefiro continuar ganhando menos.
+            Não obrigado, prefiro continuar ganhando menos.
           </a>
         </section>
       </div>

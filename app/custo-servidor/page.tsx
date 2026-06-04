@@ -223,16 +223,16 @@ export default function CustoServidorUpsellPage() {
           </p>
           <CtaButton label="QUERO MANTER MINHA CONTA ATIVA →" />
           <a
-            href={CHECKOUT_URL}
+            href="/obrigado"
             style={{
               display: "inline-block",
-              marginTop: 18,
+              marginTop: 12,
               fontSize: 13,
               color: GRAY,
               textDecoration: "underline",
             }}
           >
-            Não, prefiro arriscar minha conta.
+            Não obrigado, prefiro arriscar minha conta.
           </a>
         </section>
       </div>
