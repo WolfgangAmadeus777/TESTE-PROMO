@@ -1,7 +1,12 @@
 import type { Metadata } from "next"
-import { Roboto } from "next/font/google"
+import { Barlow, Barlow_Condensed } from "next/font/google"
 
-const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500", "700", "900"] })
+const barlow = Barlow({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-barlow" })
+const barlowCondensed = Barlow_Condensed({
+  subsets: ["latin"],
+  weight: ["400", "600", "700", "800", "900"],
+  variable: "--font-barlow-condensed",
+})
 
 export const metadata: Metadata = {
   title: "App Rápido — Receba avaliações antes de todo mundo",
@@ -10,33 +15,39 @@ export const metadata: Metadata = {
 
 const CHECKOUT_URL = "https://go.perfectpay.com.br/PPU38CQCOOJ"
 
-const BG = "#0F0F0F"
-const CARD = "#212121"
-const CARD_HOVER = "#272727"
-const RED = "#FF0000"
-const TEXT = "#F1F1F1"
-const MUTED = "#AAAAAA"
-const BORDER = "#3F3F3F"
-const WHITE = "#FFFFFF"
+const BG = "#FFFFFF"
+const TEXT = "#111111"
+const BLUE = "#2563EB"
+const BLUE_TINT = "#EFF6FF"
+const RED_TINT = "#FEF2F2"
+const RED = "#DC2626"
+const MUTED = "#6B7280"
+const DECLINE = "#9CA3AF"
+const BORDER = "#E5E7EB"
+
+const CONDENSED = "var(--font-barlow-condensed)"
+const BODY = "var(--font-barlow)"
 
 function CtaButton({ label }: { label: string }) {
   return (
     <a
       href={CHECKOUT_URL}
-      className="yt-cta"
+      className="ed-cta"
       style={{
-        display: "block",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
         width: "100%",
-        backgroundColor: RED,
-        color: WHITE,
+        height: 56,
+        backgroundColor: BLUE,
+        color: "#FFFFFF",
         textAlign: "center",
-        fontWeight: 500,
-        fontSize: 16,
-        lineHeight: 1.3,
-        letterSpacing: "0.02em",
+        fontFamily: CONDENSED,
+        fontWeight: 700,
+        fontSize: 20,
+        letterSpacing: "0.04em",
         textTransform: "uppercase",
-        padding: "18px 24px",
-        borderRadius: 2,
+        borderRadius: 4,
         textDecoration: "none",
       }}
     >
@@ -52,8 +63,9 @@ function DeclineLink() {
       style={{
         display: "inline-block",
         marginTop: 12,
+        fontFamily: BODY,
         fontSize: 13,
-        color: MUTED,
+        color: DECLINE,
         textDecoration: "underline",
       }}
     >
@@ -65,148 +77,176 @@ function DeclineLink() {
 export default function AppRapidoUpsellPage() {
   return (
     <main
-      className={roboto.className}
-      style={{ backgroundColor: BG, color: TEXT, minHeight: "100vh", width: "100%" }}
+      className={`${barlow.variable} ${barlowCondensed.variable}`}
+      style={{ backgroundColor: BG, color: TEXT, minHeight: "100vh", width: "100%", fontFamily: BODY }}
     >
       {/* 1. TOP BAR */}
       <div
         style={{
           textAlign: "center",
-          fontSize: 13,
-          fontWeight: 500,
-          color: WHITE,
+          fontFamily: CONDENSED,
+          fontSize: 14,
+          fontWeight: 600,
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+          color: "#FFFFFF",
           padding: "12px 16px",
-          backgroundColor: RED,
+          backgroundColor: BLUE,
         }}
       >
-        ⚡ Oferta única — disponível apenas agora
+        Oferta única — disponível apenas agora
       </div>
 
       <div style={{ maxWidth: 640, margin: "0 auto", padding: "0 24px" }}>
         {/* 2. HERO */}
-        <section style={{ paddingTop: 56, paddingBottom: 56, textAlign: "center" }}>
-          <span
-            style={{
-              display: "inline-block",
-              fontSize: 12,
-              fontWeight: 500,
-              letterSpacing: "0.08em",
-              color: WHITE,
-              backgroundColor: RED,
-              padding: "6px 14px",
-              borderRadius: 500,
-            }}
+        <section style={{ paddingTop: 56, paddingBottom: 56, position: "relative", overflow: "hidden" }}>
+          {/* decorative diagonal line */}
+          <svg
+            aria-hidden="true"
+            width="100%"
+            height="100%"
+            viewBox="0 0 600 400"
+            preserveAspectRatio="none"
+            style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none" }}
           >
-            COMPRA ÚNICA · SEM MENSALIDADE
-          </span>
+            <line x1="-50" y1="380" x2="520" y2="-40" stroke={BLUE_TINT} strokeWidth="80" />
+          </svg>
 
-          <h1
-            style={{
-              fontSize: 42,
-              lineHeight: 1.15,
-              fontWeight: 700,
-              marginTop: 24,
-              marginBottom: 16,
-              textWrap: "balance",
-              color: WHITE,
-            }}
-          >
-            Receba avaliações{" "}
-            <span style={{ color: RED }}>antes de todo mundo</span>
-          </h1>
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <span
+              style={{
+                display: "inline-block",
+                fontFamily: CONDENSED,
+                fontSize: 13,
+                fontWeight: 600,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: BLUE,
+                backgroundColor: "#FFFFFF",
+                border: `1.5px solid ${BLUE}`,
+                padding: "6px 16px",
+                borderRadius: 500,
+              }}
+            >
+              Compra única · Sem mensalidade
+            </span>
 
-          <p style={{ fontSize: 18, lineHeight: 1.5, color: MUTED, marginBottom: 36 }}>
-            Com o App Rápido você entra na fila prioritária e nunca fica sem tarefa disponível.
-          </p>
+            <h1
+              style={{
+                fontFamily: CONDENSED,
+                fontSize: 64,
+                lineHeight: 0.95,
+                fontWeight: 800,
+                textTransform: "uppercase",
+                marginTop: 24,
+                marginBottom: 20,
+                textWrap: "balance",
+                color: TEXT,
+              }}
+            >
+              Receba avaliações{" "}
+              <span style={{ color: BLUE, fontStyle: "italic" }}>antes de todo mundo</span>
+            </h1>
 
-          <div>
-            <CtaButton label="QUERO APP RÁPIDO POR R$ 27,90 →" />
+            <p style={{ fontSize: 18, lineHeight: 1.5, color: MUTED, marginBottom: 36, maxWidth: 460 }}>
+              Com o App Rápido você entra na fila prioritária e nunca fica sem tarefa disponível.
+            </p>
 
-            <p style={{ fontSize: 13, color: MUTED, marginTop: 16 }}>
+            <CtaButton label="Quero App Rápido por R$ 27,90 →" />
+
+            <p style={{ fontSize: 13, color: MUTED, marginTop: 16, textAlign: "center" }}>
               🔒 Pagamento único · Sem mensalidade · Acesso vitalício
             </p>
 
-            <div>
+            <div style={{ textAlign: "center" }}>
               <DeclineLink />
             </div>
           </div>
         </section>
+      </div>
 
-        {/* 3. PROBLEM vs SOLUTION */}
-        <section
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr",
-            gap: 16,
-            paddingBottom: 56,
-          }}
-          className="yt-rapido-problem"
-        >
-          <div
-            style={{
-              backgroundColor: CARD,
-              borderRadius: 12,
-              borderLeft: `3px solid ${RED}`,
-              padding: 24,
-            }}
-          >
-            <div style={{ fontSize: 14, fontWeight: 700, color: RED, marginBottom: 10 }}>
-              ❌ SEM APP RÁPIDO
+      {/* 3. PROBLEM vs SOLUTION — edge to edge vertical split */}
+      <section className="ed-split" style={{ display: "grid", gridTemplateColumns: "1fr", margin: "0 0 56px" }}>
+        <div style={{ backgroundColor: RED_TINT, borderLeft: `5px solid ${RED}`, padding: "32px 24px" }}>
+          <div style={{ maxWidth: 640, margin: "0 auto" }}>
+            <div
+              style={{
+                fontFamily: CONDENSED,
+                fontSize: 15,
+                fontWeight: 600,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: RED,
+                marginBottom: 10,
+              }}
+            >
+              ❌ Sem App Rápido
             </div>
-            <p style={{ fontSize: 15, lineHeight: 1.55, color: MUTED }}>
+            <p style={{ fontSize: 16, lineHeight: 1.55, color: TEXT }}>
               Você entra na fila comum e espera avaliações sobrarem para outros usuários.
             </p>
           </div>
+        </div>
 
-          <div
-            style={{
-              backgroundColor: CARD_HOVER,
-              borderRadius: 12,
-              borderLeft: `3px solid ${RED}`,
-              padding: 24,
-            }}
-          >
-            <div style={{ fontSize: 14, fontWeight: 700, color: RED, marginBottom: 10 }}>
-              ✅ COM APP RÁPIDO
+        <div style={{ backgroundColor: BLUE_TINT, borderLeft: `5px solid ${BLUE}`, padding: "32px 24px" }}>
+          <div style={{ maxWidth: 640, margin: "0 auto" }}>
+            <div
+              style={{
+                fontFamily: CONDENSED,
+                fontSize: 15,
+                fontWeight: 600,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: BLUE,
+                marginBottom: 10,
+              }}
+            >
+              ✅ Com App Rápido
             </div>
-            <p style={{ fontSize: 15, lineHeight: 1.55, color: TEXT }}>
+            <p style={{ fontSize: 16, lineHeight: 1.55, color: TEXT }}>
               Você é o primeiro a receber novas avaliações disponíveis — sempre.
             </p>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* 4. ONE BIG NUMBER */}
-        <section style={{ textAlign: "center", paddingBottom: 56 }}>
-          <div style={{ height: 1, backgroundColor: BORDER, marginBottom: 40 }} />
-          <div
-            style={{
-              fontSize: 128,
-              fontWeight: 900,
-              lineHeight: 1,
-              color: RED,
-            }}
-          >
-            2x
+      <div style={{ maxWidth: 640, margin: "0 auto", padding: "0 24px" }}>
+        {/* 4. STAT — left aligned */}
+        <section style={{ paddingBottom: 56, borderTop: `1px solid ${BLUE}`, paddingTop: 40 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+            <div
+              style={{
+                fontFamily: CONDENSED,
+                fontSize: 160,
+                fontWeight: 900,
+                lineHeight: 0.85,
+                color: BLUE,
+              }}
+            >
+              2x
+            </div>
+            <div
+              style={{
+                fontFamily: CONDENSED,
+                fontSize: 32,
+                fontWeight: 800,
+                lineHeight: 1,
+                textTransform: "uppercase",
+                color: TEXT,
+              }}
+            >
+              mais avaliações
+              <br />
+              por dia
+            </div>
           </div>
-          <p style={{ fontSize: 24, fontWeight: 700, color: WHITE, marginTop: 8 }}>
-            mais avaliações por dia
-          </p>
-          <p style={{ fontSize: 14, color: MUTED, marginTop: 10 }}>
+          <p style={{ fontSize: 15, color: MUTED, marginTop: 16 }}>
             Mais avaliações = mais ganhos. Simples assim.
           </p>
-          <div style={{ height: 1, backgroundColor: BORDER, marginTop: 40 }} />
         </section>
 
         {/* 5. TESTIMONIALS */}
-        <section
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr",
-            gap: 16,
-            paddingBottom: 56,
-          }}
-          className="yt-rapido-testimonials"
-        >
+        <section className="ed-testimonials" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 16, paddingBottom: 56 }}>
           {[
             {
               initials: "MR",
@@ -224,45 +264,57 @@ export default function AppRapidoUpsellPage() {
             <div
               key={t.initials}
               style={{
-                backgroundColor: CARD,
-                borderRadius: 12,
-                borderLeft: `3px solid ${RED}`,
+                backgroundColor: "#FFFFFF",
+                border: `1px solid ${BORDER}`,
+                borderLeft: `4px solid ${BLUE}`,
+                borderRadius: 8,
                 padding: 24,
               }}
             >
-              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
+              <p style={{ fontSize: 16, lineHeight: 1.5, color: TEXT, marginBottom: 16 }}>{`"${t.quote}"`}</p>
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                 <div
                   style={{
                     width: 40,
                     height: 40,
-                    borderRadius: 999,
-                    backgroundColor: RED,
-                    color: WHITE,
+                    borderRadius: 4,
+                    backgroundColor: BLUE,
+                    color: "#FFFFFF",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    fontFamily: CONDENSED,
                     fontWeight: 700,
-                    fontSize: 14,
+                    fontSize: 15,
                   }}
                 >
                   {t.initials}
                 </div>
-                <div style={{ fontSize: 14, fontWeight: 500, color: TEXT }}>
-                  {t.name} <span style={{ color: MUTED, fontWeight: 400 }}>— {t.city}</span>
+                <div style={{ fontSize: 14, color: MUTED }}>
+                  {t.name} — {t.city}
                 </div>
               </div>
-              <p style={{ fontSize: 15, lineHeight: 1.5, color: MUTED, fontStyle: "italic" }}>{`"${t.quote}"`}</p>
             </div>
           ))}
         </section>
 
         {/* 6. FINAL CTA */}
-        <section style={{ paddingBottom: 64, textAlign: "center" }}>
-          <p style={{ fontSize: 20, fontWeight: 700, marginBottom: 20, textWrap: "balance", color: TEXT }}>
+        <section style={{ paddingBottom: 64 }}>
+          <p
+            style={{
+              fontFamily: CONDENSED,
+              fontSize: 28,
+              fontWeight: 800,
+              textTransform: "uppercase",
+              marginBottom: 20,
+              textWrap: "balance",
+              color: TEXT,
+            }}
+          >
             Pagamento único de R$ 27,90 — para sempre.
           </p>
-          <CtaButton label="ATIVAR APP RÁPIDO AGORA →" />
-          <div>
+          <CtaButton label="Ativar App Rápido agora →" />
+          <div style={{ textAlign: "center" }}>
             <DeclineLink />
           </div>
         </section>
@@ -270,11 +322,11 @@ export default function AppRapidoUpsellPage() {
 
       <style>{`
         @media (min-width: 640px) {
-          .yt-rapido-problem { grid-template-columns: 1fr 1fr !important; }
-          .yt-rapido-testimonials { grid-template-columns: 1fr 1fr !important; }
+          .ed-split { grid-template-columns: 1fr 1fr !important; }
+          .ed-testimonials { grid-template-columns: 1fr 1fr !important; }
         }
-        .yt-cta { transition: background-color 0.15s ease; }
-        .yt-cta:hover { background-color: #CC0000; }
+        .ed-cta { transition: background-color 0.15s ease; }
+        .ed-cta:hover { background-color: #1D4ED8; }
       `}</style>
     </main>
   )
