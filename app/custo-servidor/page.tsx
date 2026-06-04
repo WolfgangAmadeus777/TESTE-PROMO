@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Contribua com R$ 19,90 e mantenha sua conta protegida e ativa.",
 }
 
-const CHECKOUT_URL = "https://go.perfectpay.com.br/PPU38CQCOL6"
+const CHECKOUT_URL = "https://go.perfectpay.com.br/PPU38CQCOP1"
 
 const WHITE = "#FFFFFF"
 const INK = "#111111"

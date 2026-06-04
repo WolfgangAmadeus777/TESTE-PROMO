@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Usuários Gold ganham até 3x mais em cada avaliação enviada.",
 }
 
-const CHECKOUT_URL = "https://go.perfectpay.com.br/PPU38CQCOL6"
+const CHECKOUT_URL = "https://go.perfectpay.com.br/PPU38CQCOOH"
 
 const WHITE = "#FFFFFF"
 const INK = "#111111"

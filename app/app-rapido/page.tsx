@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Entre na fila prioritária e nunca fique sem tarefa disponível.",
 }
 
-const CHECKOUT_URL = "https://go.perfectpay.com.br/PPU38CQCOL6"
+const CHECKOUT_URL = "https://go.perfectpay.com.br/PPU38CQCOOJ"
 
 const WHITE = "#FFFFFF"
 const INK = "#111111"
