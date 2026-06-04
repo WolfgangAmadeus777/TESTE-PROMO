@@ -10,32 +10,38 @@ export const metadata: Metadata = {
 
 const CHECKOUT_URL = "https://go.perfectpay.com.br/PPU38CQCOOJ"
 
+const BG = "#0A0F1E"
+const CARD = "#111827"
 const WHITE = "#FFFFFF"
-const INK = "#111111"
-const BLUE = "#2563EB"
-const BLUE_TINT = "#EFF4FE"
-const GRAY = "#8A8A8A"
-const BORDER = "#ECECEC"
+const LIGHT = "#CBD5E1"
+const GRAY = "#7C8BA3"
+const BLUE = "#3B82F6"
+const RED = "#EF4444"
 
 function CtaButton({ label }: { label: string }) {
   return (
     <a
       href={CHECKOUT_URL}
+      className="wa-cta"
       style={{
+        position: "relative",
         display: "block",
         width: "100%",
         backgroundColor: BLUE,
         color: WHITE,
         textAlign: "center",
-        fontWeight: 700,
+        fontWeight: 800,
         fontSize: 17,
         lineHeight: 1.3,
-        padding: "18px 24px",
-        borderRadius: 12,
+        padding: "20px 24px",
+        borderRadius: 14,
         textDecoration: "none",
+        overflow: "hidden",
+        boxShadow: "0 0 0 1px rgba(59,130,246,0.6), 0 10px 40px rgba(59,130,246,0.45)",
       }}
     >
-      {label}
+      <span style={{ position: "relative", zIndex: 1 }}>{label}</span>
+      <span className="wa-shimmer" aria-hidden="true" />
     </a>
   )
 }
@@ -61,32 +67,54 @@ export default function AppRapidoUpsellPage() {
   return (
     <main
       className={jakarta.className}
-      style={{ backgroundColor: WHITE, color: INK, minHeight: "100vh", width: "100%" }}
+      style={{ backgroundColor: BG, color: WHITE, minHeight: "100vh", width: "100%" }}
     >
       {/* 1. TOP BAR */}
       <div
         style={{
           textAlign: "center",
           fontSize: 13,
-          color: GRAY,
+          fontWeight: 600,
+          color: BLUE,
           padding: "12px 16px",
-          borderBottom: `1px solid ${BORDER}`,
+          backgroundColor: "#070B16",
+          borderBottom: "1px solid rgba(59,130,246,0.18)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 8,
         }}
       >
+        <span className="wa-pulse" aria-hidden="true" />
         ⚡ Oferta única — disponível apenas agora
       </div>
 
       <div style={{ maxWidth: 640, margin: "0 auto", padding: "0 24px" }}>
         {/* 2. HERO */}
-        <section style={{ paddingTop: 56, paddingBottom: 56, textAlign: "center" }}>
+        <section style={{ position: "relative", paddingTop: 56, paddingBottom: 56, textAlign: "center" }}>
+          {/* speed lines decoration */}
+          <svg
+            className="wa-speed"
+            aria-hidden="true"
+            viewBox="0 0 400 200"
+            preserveAspectRatio="none"
+          >
+            <line x1="0" y1="40" x2="400" y2="40" stroke={BLUE} strokeWidth="2" />
+            <line x1="40" y1="90" x2="400" y2="90" stroke={BLUE} strokeWidth="3" />
+            <line x1="0" y1="140" x2="360" y2="140" stroke={BLUE} strokeWidth="2" />
+            <line x1="80" y1="170" x2="400" y2="170" stroke={BLUE} strokeWidth="2" />
+          </svg>
+
           <span
             style={{
+              position: "relative",
               display: "inline-block",
               fontSize: 12,
               fontWeight: 700,
               letterSpacing: "0.12em",
               color: BLUE,
-              backgroundColor: BLUE_TINT,
+              backgroundColor: "transparent",
+              border: `1px solid rgba(59,130,246,0.5)`,
               padding: "6px 14px",
               borderRadius: 999,
             }}
@@ -96,29 +124,36 @@ export default function AppRapidoUpsellPage() {
 
           <h1
             style={{
-              fontSize: 40,
+              position: "relative",
+              fontSize: 42,
               lineHeight: 1.1,
               fontWeight: 800,
               marginTop: 24,
               marginBottom: 16,
               textWrap: "balance",
+              color: WHITE,
             }}
           >
-            Receba avaliações antes de todo mundo
+            Receba avaliações{" "}
+            <span className="wa-glow-underline" style={{ color: BLUE, fontStyle: "italic" }}>
+              antes de todo mundo
+            </span>
           </h1>
 
-          <p style={{ fontSize: 18, lineHeight: 1.5, color: "#444444", marginBottom: 36 }}>
+          <p style={{ position: "relative", fontSize: 18, lineHeight: 1.5, color: LIGHT, marginBottom: 36 }}>
             Com o App Rápido você entra na fila prioritária e nunca fica sem tarefa disponível.
           </p>
 
-          <CtaButton label="QUERO APP RÁPIDO POR R$ 27,90 →" />
+          <div style={{ position: "relative" }}>
+            <CtaButton label="QUERO APP RÁPIDO POR R$ 27,90 →" />
 
-          <p style={{ fontSize: 13, color: GRAY, marginTop: 16 }}>
-            🔒 Pagamento único · Sem mensalidade · Acesso vitalício
-          </p>
+            <p style={{ fontSize: 13, color: GRAY, marginTop: 16 }}>
+              🔒 Pagamento único · Sem mensalidade · Acesso vitalício
+            </p>
 
-          <div>
-            <DeclineLink />
+            <div>
+              <DeclineLink />
+            </div>
           </div>
         </section>
 
@@ -134,31 +169,33 @@ export default function AppRapidoUpsellPage() {
         >
           <div
             style={{
-              border: `1px solid ${BORDER}`,
+              backgroundColor: CARD,
               borderRadius: 14,
+              borderLeft: `4px solid ${RED}`,
               padding: 24,
             }}
           >
-            <div style={{ fontSize: 14, fontWeight: 700, color: GRAY, marginBottom: 10 }}>
+            <div style={{ fontSize: 14, fontWeight: 700, color: RED, marginBottom: 10 }}>
               ❌ SEM APP RÁPIDO
             </div>
-            <p style={{ fontSize: 15, lineHeight: 1.55, color: "#333333" }}>
+            <p style={{ fontSize: 15, lineHeight: 1.55, color: LIGHT }}>
               Você entra na fila comum e espera avaliações sobrarem para outros usuários.
             </p>
           </div>
 
           <div
             style={{
-              border: `1px solid ${BLUE}`,
-              backgroundColor: BLUE_TINT,
+              backgroundColor: CARD,
               borderRadius: 14,
+              borderLeft: `4px solid ${BLUE}`,
               padding: 24,
+              boxShadow: "0 0 0 1px rgba(59,130,246,0.3), 0 8px 30px rgba(59,130,246,0.25)",
             }}
           >
             <div style={{ fontSize: 14, fontWeight: 700, color: BLUE, marginBottom: 10 }}>
               ✅ COM APP RÁPIDO
             </div>
-            <p style={{ fontSize: 15, lineHeight: 1.55, color: "#1a1a1a" }}>
+            <p style={{ fontSize: 15, lineHeight: 1.55, color: WHITE }}>
               Você é o primeiro a receber novas avaliações disponíveis — sempre.
             </p>
           </div>
@@ -166,13 +203,25 @@ export default function AppRapidoUpsellPage() {
 
         {/* 4. ONE BIG NUMBER */}
         <section style={{ textAlign: "center", paddingBottom: 56 }}>
-          <p style={{ fontSize: 28, fontWeight: 800, lineHeight: 1.25, textWrap: "balance" }}>
-            Usuários prioritários completam{" "}
-            <span style={{ color: BLUE }}>2x mais avaliações por dia</span>
+          <div style={{ height: 1, backgroundColor: "rgba(255,255,255,0.1)", marginBottom: 40 }} />
+          <div
+            style={{
+              fontSize: 128,
+              fontWeight: 800,
+              lineHeight: 1,
+              color: BLUE,
+              textShadow: "0 0 50px rgba(59,130,246,0.6)",
+            }}
+          >
+            2x
+          </div>
+          <p style={{ fontSize: 24, fontWeight: 700, color: WHITE, marginTop: 8 }}>
+            mais avaliações por dia
           </p>
           <p style={{ fontSize: 14, color: GRAY, marginTop: 10 }}>
             Mais avaliações = mais ganhos. Simples assim.
           </p>
+          <div style={{ height: 1, backgroundColor: "rgba(255,255,255,0.1)", marginTop: 40 }} />
         </section>
 
         {/* 5. TESTIMONIALS */}
@@ -202,8 +251,9 @@ export default function AppRapidoUpsellPage() {
             <div
               key={t.initials}
               style={{
-                border: `1px solid ${BORDER}`,
+                backgroundColor: CARD,
                 borderRadius: 14,
+                borderLeft: `3px solid ${BLUE}`,
                 padding: 24,
               }}
             >
@@ -213,8 +263,8 @@ export default function AppRapidoUpsellPage() {
                     width: 40,
                     height: 40,
                     borderRadius: 999,
-                    backgroundColor: BLUE_TINT,
-                    color: BLUE,
+                    backgroundColor: BLUE,
+                    color: WHITE,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -224,18 +274,18 @@ export default function AppRapidoUpsellPage() {
                 >
                   {t.initials}
                 </div>
-                <div style={{ fontSize: 14, fontWeight: 600 }}>
+                <div style={{ fontSize: 14, fontWeight: 600, color: WHITE }}>
                   {t.name} <span style={{ color: GRAY, fontWeight: 400 }}>— {t.city}</span>
                 </div>
               </div>
-              <p style={{ fontSize: 15, lineHeight: 1.5, color: "#333333" }}>{`"${t.quote}"`}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.5, color: LIGHT, fontStyle: "italic" }}>{`"${t.quote}"`}</p>
             </div>
           ))}
         </section>
 
         {/* 6. FINAL CTA */}
         <section style={{ paddingBottom: 64, textAlign: "center" }}>
-          <p style={{ fontSize: 20, fontWeight: 800, marginBottom: 20, textWrap: "balance" }}>
+          <p style={{ fontSize: 20, fontWeight: 800, marginBottom: 20, textWrap: "balance", color: WHITE }}>
             Pagamento único de R$ 27,90 — para sempre.
           </p>
           <CtaButton label="ATIVAR APP RÁPIDO AGORA →" />
@@ -249,6 +299,51 @@ export default function AppRapidoUpsellPage() {
         @media (min-width: 640px) {
           .wa-rapido-problem { grid-template-columns: 1fr 1fr !important; }
           .wa-rapido-testimonials { grid-template-columns: 1fr 1fr !important; }
+        }
+        .wa-pulse {
+          display: inline-block;
+          width: 9px;
+          height: 9px;
+          border-radius: 999px;
+          background-color: ${BLUE};
+          box-shadow: 0 0 0 0 rgba(59,130,246,0.7);
+          animation: wa-pulse-anim 1.8s infinite;
+        }
+        @keyframes wa-pulse-anim {
+          0% { box-shadow: 0 0 0 0 rgba(59,130,246,0.7); }
+          70% { box-shadow: 0 0 0 10px rgba(59,130,246,0); }
+          100% { box-shadow: 0 0 0 0 rgba(59,130,246,0); }
+        }
+        .wa-shimmer {
+          position: absolute;
+          top: 0;
+          left: -150%;
+          width: 60%;
+          height: 100%;
+          background: linear-gradient(110deg, transparent, rgba(255,255,255,0.45), transparent);
+          transform: skewX(-20deg);
+          animation: wa-shimmer-anim 2.8s infinite;
+        }
+        @keyframes wa-shimmer-anim {
+          0% { left: -150%; }
+          60% { left: 150%; }
+          100% { left: 150%; }
+        }
+        .wa-glow-underline {
+          text-decoration: underline;
+          text-decoration-color: ${BLUE};
+          text-underline-offset: 6px;
+          text-decoration-thickness: 3px;
+          filter: drop-shadow(0 0 12px rgba(59,130,246,0.7));
+        }
+        .wa-speed {
+          position: absolute;
+          top: 70px;
+          left: 0;
+          width: 100%;
+          height: 200px;
+          opacity: 0.07;
+          pointer-events: none;
         }
       `}</style>
     </main>
