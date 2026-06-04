@@ -40,6 +40,23 @@ function CtaButton({ label }: { label: string }) {
   )
 }
 
+function DeclineLink() {
+  return (
+    <a
+      href="/obrigado"
+      style={{
+        display: "inline-block",
+        marginTop: 12,
+        fontSize: 13,
+        color: GRAY,
+        textDecoration: "underline",
+      }}
+    >
+      Não obrigado, prefiro arriscar minha conta.
+    </a>
+  )
+}
+
 export default function CustoServidorUpsellPage() {
   return (
     <main
@@ -100,6 +117,10 @@ export default function CustoServidorUpsellPage() {
           <p style={{ fontSize: 13, color: GRAY, marginTop: 16 }}>
             🔒 Pagamento seguro · Sua conta fica garantida · Sem surpresas
           </p>
+
+          <div>
+            <DeclineLink />
+          </div>
         </section>
 
         {/* 3. WHAT HAPPENS WITHOUT IT */}
@@ -222,18 +243,9 @@ export default function CustoServidorUpsellPage() {
             R$ 19,90 para manter sua conta ativa e segura.
           </p>
           <CtaButton label="QUERO MANTER MINHA CONTA ATIVA →" />
-          <a
-            href="/obrigado"
-            style={{
-              display: "inline-block",
-              marginTop: 12,
-              fontSize: 13,
-              color: GRAY,
-              textDecoration: "underline",
-            }}
-          >
-            Não obrigado, prefiro arriscar minha conta.
-          </a>
+          <div>
+            <DeclineLink />
+          </div>
         </section>
       </div>
 

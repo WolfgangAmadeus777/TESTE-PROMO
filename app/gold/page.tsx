@@ -40,6 +40,23 @@ function CtaButton() {
   )
 }
 
+function DeclineLink() {
+  return (
+    <a
+      href="/custo-servidor"
+      style={{
+        display: "inline-block",
+        marginTop: 12,
+        fontSize: 13,
+        color: GRAY,
+        textDecoration: "underline",
+      }}
+    >
+      Não obrigado, prefiro continuar ganhando menos.
+    </a>
+  )
+}
+
 export default function GoldUpsellPage() {
   return (
     <main
@@ -99,6 +116,10 @@ export default function GoldUpsellPage() {
           <p style={{ fontSize: 13, color: GRAY, marginTop: 16 }}>
             🔒 Pagamento seguro · Cancele quando quiser · Garantia de 7 dias
           </p>
+
+          <div>
+            <DeclineLink />
+          </div>
         </section>
 
         {/* 3. COMPARISON TABLE */}
@@ -241,18 +262,9 @@ export default function GoldUpsellPage() {
         {/* 6. FINAL CTA */}
         <section style={{ paddingBottom: 64, textAlign: "center" }}>
           <CtaButton />
-          <a
-            href="/custo-servidor"
-            style={{
-              display: "inline-block",
-              marginTop: 12,
-              fontSize: 13,
-              color: GRAY,
-              textDecoration: "underline",
-            }}
-          >
-            Não obrigado, prefiro continuar ganhando menos.
-          </a>
+          <div>
+            <DeclineLink />
+          </div>
         </section>
       </div>
 

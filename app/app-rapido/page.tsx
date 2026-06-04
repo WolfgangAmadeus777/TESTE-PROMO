@@ -40,6 +40,23 @@ function CtaButton({ label }: { label: string }) {
   )
 }
 
+function DeclineLink() {
+  return (
+    <a
+      href="/gold"
+      style={{
+        display: "inline-block",
+        marginTop: 12,
+        fontSize: 13,
+        color: GRAY,
+        textDecoration: "underline",
+      }}
+    >
+      Não obrigado, prefiro ficar na fila comum.
+    </a>
+  )
+}
+
 export default function AppRapidoUpsellPage() {
   return (
     <main
@@ -99,6 +116,10 @@ export default function AppRapidoUpsellPage() {
           <p style={{ fontSize: 13, color: GRAY, marginTop: 16 }}>
             🔒 Pagamento único · Sem mensalidade · Acesso vitalício
           </p>
+
+          <div>
+            <DeclineLink />
+          </div>
         </section>
 
         {/* 3. PROBLEM vs SOLUTION */}
@@ -218,18 +239,9 @@ export default function AppRapidoUpsellPage() {
             Pagamento único de R$ 27,90 — para sempre.
           </p>
           <CtaButton label="ATIVAR APP RÁPIDO AGORA →" />
-          <a
-            href="/gold"
-            style={{
-              display: "inline-block",
-              marginTop: 12,
-              fontSize: 13,
-              color: GRAY,
-              textDecoration: "underline",
-            }}
-          >
-            Não obrigado, prefiro ficar na fila comum.
-          </a>
+          <div>
+            <DeclineLink />
+          </div>
         </section>
       </div>
 
